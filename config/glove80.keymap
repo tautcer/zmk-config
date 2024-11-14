@@ -16,7 +16,6 @@
 #define X_RB    &none
 
 #define X_LH    &none &none &none &kp LEFT &kp RIGHT
-#define X_MH    &none &none
 #define X_RH    &kp UP &kp DOWN &none &none &none
 
 /* activate bluetooth */

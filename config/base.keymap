@@ -67,7 +67,9 @@
         hold-trigger-on-release; \
     )
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
+MAKE_HRM(hmlt, &mo, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
+MAKE_HRM(hmrt, &mo, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 // HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
 #define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
@@ -264,7 +266,7 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &kp SQT         X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &lt SYM N     &hml LALT R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmr RALT E   &lt SYM I       X_RM
+    X_LM     &hmlt SYM N   &hml LALT R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmr RALT E   &hmrt SYM I     X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &hml LGUI X   &kp Q         &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &hm_qexcl RGUI 0 X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
@@ -300,7 +302,7 @@ ZMK_LAYER(sym,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     ___           &kp LT        &kp GT        &kp BSLH      &kp GRAVE       X_MT     &kp AMPS      &arrows       &kp LBKT      &kp RBKT      ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp EXCL &hml LALT MINUS &hml LSHIFT PLUS &hml LCTRL EQUAL &kp HASH X_MM   &kp PIPE      &hmr RCTRL COLON &hmr RSHIFT LPAR &hmr RALT RPAR &kp PRCNT      X_RM
+    X_LM     &kp EXCL &hml LALT MINUS &hml LSHIFT PLUS &hml LCTRL EQUAL &kp HASH     X_MM     &kp PIPE      &hmr RCTRL COLON &hmr RSHIFT LPAR &hmr RALT RPAR &kp PRCNT X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &kp LGUI      &kp UNDER     &kp STAR      &kp CARET     &kp FSLH        X_MB     &kp TILDE     &kp DLLR      &kp LBRC      &kp RBRC       &kp RGUI       X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤

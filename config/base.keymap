@@ -168,6 +168,10 @@ ZMK_TRI_STATE(swapper,
 SIMPLE_MORPH(comma_morph, SFT, &kp COMMA, &comma_inner_morph)
 SIMPLE_MORPH(comma_inner_morph, CTL, &kp SEMICOLON, &kp LESS_THAN)
 
+// tap: apos | shift + tap: quote | ctrl + shift + tap: under
+SIMPLE_MORPH(quote_morph, SFT, &kp APOS, &quote_inner_morph)
+SIMPLE_MORPH(quote_inner_morph, CTL, &kp DQT, &kp UNDER)
+
 // tap: dot | shift + tap: colon | ctrl + shift + tap: >
 SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
 SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
@@ -270,7 +274,7 @@ ZMK_CONDITIONAL_LAYER(sys, FN NUM, SYS)  // FN + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &kp SQT         X_RT
+    X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &quote_morph    X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hmlt SYM N   &hml LALT R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmr RALT E   &hmrt SYM I     X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤

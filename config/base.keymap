@@ -15,9 +15,9 @@
 #define DEF 0
 #define NAV 1
 #define FN 2
-#define NUM 4
-#define SYS 5
-#define MOUSE 6
+#define NUM 3
+#define SYS 4
+#define MOUSE 5
 
 #define XXX &none
 #define ___ &trans
@@ -66,9 +66,7 @@
         hold-trigger-on-release; \
     )
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
-MAKE_HRM(hmlt, &mo, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
-MAKE_HRM(hmrt, &mo, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 // HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
 #define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
@@ -183,38 +181,6 @@ ZMK_HOLD_TAP(hm_qexcl,
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
 SIMPLE_MORPH(rpar_gt, SFT, &kp RPAR, &kp GT)
 
-ZMK_MACRO(rsml_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp MINUS &kp GT>;
-)
-
-ZMK_MACRO(lsml_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp LT &kp MINUS>;
-)
-
-ZMK_MACRO(rbig_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp EQUAL &kp GT>;
-)
-
-ZMK_MACRO(lbig_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp LT &kp EQUAL>;
-)
-
-SIMPLE_MORPH(sml_arr_morph, SFT, &lsml_arr, &rsml_arr)
-SIMPLE_MORPH(big_arr_morph, SFT, &rbig_arr, &lbig_arr)
-ZMK_MOD_MORPH(arrows,
-    bindings = <&sml_arr_morph>, <&big_arr_morph>;
-    mods = <(MOD_LALT|MOD_RALT)>;
-    keep-mods = <MOD_LSFT>;
-)
-
 // tap: space | shift + tap: dot -> space -> sticky shift | hold: activate layer
 ZMK_HOLD_TAP(lt_spc,
     flavor = "balanced";
@@ -303,9 +269,9 @@ ZMK_LAYER(fn,
 
 ZMK_LAYER(num,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___            ___           ___          ___             X_MT     ___           &kp N7        &kp N8        &kp N9        ___             X_RT
+    X_LT     ___           ___            ___           ___          ___             X_MT     &kp PRCNT     &kp N7        &kp N8        &kp N9        ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     ___           ___            ___           ___          ___             X_MM     ___           &hml LALT N4  &hml LSHFT N5 &hml LCTRL N6 &hml LGUI N0    X_RM
+    X_LM     ___           ___            ___           ___          ___             X_MM     &kp COLON     &kp N4        &kp N5        &kp N6        &kp N0          X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     ___           ___            ___           ___          ___             X_MB     ___           &kp N1        &kp N2        &kp N3        &kp DOT         X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤

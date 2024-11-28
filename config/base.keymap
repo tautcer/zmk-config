@@ -15,7 +15,6 @@
 #define DEF 0
 #define NAV 1
 #define FN 2
-#define SYM 3
 #define NUM 4
 #define SYS 5
 #define MOUSE 6
@@ -141,12 +140,6 @@ ZMK_TRI_STATE(smart_mouse,
     bindings = <&tog MOUSE>, <&none>, <&tog MOUSE>;
     ignored-key-positions = <LT1 LT3 RT0 RT1 RT2 RT3 RT4 RM1 RM2 RM3 RB1 RB2 RB3 RH0 RH1>;
     ignored-layers = <MOUSE>;
-)
-
-ZMK_TRI_STATE(to_sym,
-    bindings = <&tog SYM>, <&none>, <&tog SYM>;
-    ignored-key-positions = <LH2 RH2 LT0 LT1 LT2 LT3 LT4 LM0 LM1 LM2 LM3 LM4 LB0 LB1 LB2 LB3 LB4 RT0 RT1 RT2 RT3 RT4 RM0 RM1 RM2 RM3 RM4 RB0 RB1 RB2 RB3 RB4>;
-    ignored-layers = <SYM>;
 )
 
 /* Custom behaviors */
@@ -276,9 +269,9 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &quote_morph    X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hmlt SYM N   &hml LALT R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmr RALT E   &hmrt SYM I     X_RM
+    X_LM     &hml LGUI N   &hml LALT R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmr RALT E   &hmr RGUI I     X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &hml LGUI X   &kp Q         &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &hm_qexcl RGUI 0 X_RB
+    X_LB     &kp X         &kp Q         &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
     X_LH                                 &lt_spc NAV 0 &lt FN RET    XXX             X_MH     XXX           SMART_NUM     &smart_shft                                 X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
@@ -305,18 +298,6 @@ ZMK_LAYER(fn,
     X_LB     &kp F10       &kp F1        &kp F2        &kp F3        ___             X_MB     PIN_APP       PIN_WIN       DSK_MGR       ___           ___             X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           &kp C_MUTE    &kp C_PP                                    X_RH
-//╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
-)
-
-ZMK_LAYER(sym,
-//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           &kp LT        &kp GT        &kp BSLH      &kp GRAVE       X_MT     &kp AMPS      &arrows       &kp LBKT      &kp RBKT      ___             X_RT
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &kp EXCL &hml LALT MINUS &hml LSHIFT PLUS &hml LCTRL EQUAL &kp HASH     X_MM     &kp PIPE      &hmr RCTRL COLON &hmr RSHIFT LPAR &hmr RALT RPAR &kp PRCNT X_RM
-//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp LGUI      &kp UNDER     &kp STAR      &kp CARET     &kp FSLH        X_MB     &kp TILDE     &kp DLLR      &kp LBRC      &kp RBRC      &hmr RGUI AT    X_RB
-//├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                 ___           ___           ___             X_MH     ___           ___           &smart_shft                                 X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
 )
 

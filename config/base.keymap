@@ -125,7 +125,7 @@ ZMK_HOLD_TAP(smart_num,
 )
 ZMK_TAP_DANCE(num_dance,
     tapping-term-ms = <200>;
-    bindings = <&num_word NUM>, <&sl NUM>;  // reverse this for sticky-num on single tap
+    bindings = <&sl NUM>, <&num_word NUM>;  // reverse this for sticky-num on single tap
 )
 
 // smart-mouse, requires PR #1366

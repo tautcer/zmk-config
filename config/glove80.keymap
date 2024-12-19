@@ -23,4 +23,3 @@
 
 /* source the main keymap */
 #include "base.keymap"
-

@@ -44,7 +44,7 @@ _parse_targets $expr:
 _build_single $board $shield *west_args:
     #!/usr/bin/env bash
     set -euo pipefail
-    artifact="${shield:+${shield// /+}-}${board}"
+    artifact="${shield:+${shield// /+}}"
     build_dir="{{ build / '$artifact' }}"
 
     echo "Building firmware for $artifact..."
@@ -67,6 +67,27 @@ build expr *west_args: _parse_combos
     echo "$targets" | while IFS=, read -r board shield; do
         just _build_single "$board" "$shield" {{ west_args }}
     done
+
+# copy files to destination device
+copy expr:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    destination=/run/media/$(whoami)/XIAO-SENSE
+    echo "Copying firmware to $destination..."
+
+    remaining_attemps=10
+    while (( remaining_attemps-- > 0 )) 
+    do
+      echo "Waiting for device to be mounted..."
+      if [[ -d $destination ]]; then
+        echo "Copying firmware to $destination..."
+        cp "{{ out }}/{{ expr }}.uf2" "$destination"
+        echo "Firmware copied successfully."
+        exit 0
+      fi
+      sleep "$(( remaining_attemps++ ))"
+    done
+    exit 1
 
 # clear build cache and artifacts
 clean:

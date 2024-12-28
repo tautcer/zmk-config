@@ -9,6 +9,7 @@
 / {
     chosen {
         zmk,kscan = &kscan0;
+        zmk,battery = &vbatt;
         zmk,matrix_transform = &default_transform;
     };
 

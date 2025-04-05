@@ -182,6 +182,32 @@ ZMK_MACRO(dot_spc,
     tap-ms = <5>;
     bindings = <&kp DOT &kp SPACE &sk LSHFT>;
 )
+SIMPLE_MORPH(r_arr, SFT, &r_sml_arr, &r_big_arr)
+SIMPLE_MORPH(l_arr, SFT, &l_sml_arr, &l_big_arr)
+// ->
+ZMK_MACRO(r_sml_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp MINUS  &kp GT>;
+)
+// =>
+ZMK_MACRO(r_big_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp EQUAL  &kp GT>;
+)
+// <-
+ZMK_MACRO(l_sml_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp LT &kp MINUS>;
+)
+// <=
+ZMK_MACRO(l_big_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp LT &kp EQUAL>;
+)
 
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
 ZMK_MOD_MORPH(bs_del,
@@ -240,7 +266,7 @@ ZMK_LAYER(SYM,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     ___           &kp UNDER     &kp STAR      &kp CARET     &kp FSLH        X_MB     &kp TILDE     &kp DLLR      &kp LBRC      &kp RBRC      &kp AT          X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
-    X_LH                                 ___           ___           ___             X_MH     ___           ___           &smart_shft                                 X_RH
+    X_LH                                 ___           ___           ___             X_MH     ___           &smart_shft   NAV_BSPC                                    X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
 )
 

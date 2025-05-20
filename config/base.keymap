@@ -238,7 +238,7 @@ ZMK_LAYER(base,
     X_LB     &kp X         &kp Q         &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
 #ifdef TOTEM
-    X_LH                                 XXX           &lt_spc NAV 0 &lt SYM RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
+    X_LH                                 XXX           &lt_spc SYM 0 &lt NAV RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
 #else
     X_LH                                 &lt_spc NAV 0 &lt SYM RET   XXX             X_MH     &smart_shft   SMART_NUM     NAV_BSPC                                    X_RH
 #endif

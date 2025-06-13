@@ -63,6 +63,8 @@
     )
 MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS)  // left-hand HRMs
 MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS)  // right-hand HRMs
+MAKE_HRM(hmml, &mo, &kp, KEYS_R THUMBS)  // left-hand HRMs
+MAKE_HRM(hmmr, &mo, &kp, KEYS_L THUMBS)  // right-hand HRMs
 
 // HRM combo hack - workaround for lack of tap-only combos (ZMK issue #544)
 #define ZMK_COMBO_8(NAME, TAP, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE, HOLD, SIDE) \
@@ -227,18 +229,18 @@ ZMK_TAP_DANCE(copy_cut,
 
 /* Keymap */
 
-ZMK_CONDITIONAL_LAYER(sys, SYM NUM, SYS)  // SYM + NUM --> SYS
+ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // SYM + NUM --> SYS
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &quote_morph    X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LGUI N   &hml LALT R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmr RALT E   &hmr RGUI I     X_RM
+    X_LM     &hml LGUI N   &hmml SYM R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmmr SYM E   &hmr RGUI I     X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp X         &kp Q         &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl          X_RB
+    X_LB     &kp X         &hml LALT Q   &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl          X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
 #ifdef TOTEM
-    X_LH                                 XXX           &lt_spc SYM 0 &lt NAV RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
+    X_LH                                 &kp UNDER     &spc_morph    &lt NAV RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
 #else
     X_LH                                 &lt_spc NAV 0 &lt SYM RET   XXX             X_MH     &smart_shft   SMART_NUM     NAV_BSPC                                    X_RH
 #endif

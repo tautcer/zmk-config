@@ -164,8 +164,9 @@ SIMPLE_MORPH(quote_inner_morph, CTL, &kp DQT, &kp UNDER)
 SIMPLE_MORPH(dot_morph, SFT, &kp DOT, &dot_inner_morph)
 SIMPLE_MORPH(dot_inner_morph, CTL, &kp COLON, &kp GREATER_THAN)
 
-// tap: qmark | shift + tap: excl
-SIMPLE_MORPH(qexcl, SFT, &kp QMARK, &kp EXCL)
+// tap: / | shift + tap: excl | ctrl + shift + tap: qmark
+SIMPLE_MORPH(qexcl_morph, SFT, &kp SLASH, &qexcl_inner_morph)
+SIMPLE_MORPH(qexcl_inner_morph, CTL, &kp QMARK, &kp EXCL)
 
 // tap: left/right parenthesis | shft + tap: less-than/greater-than
 SIMPLE_MORPH(lpar_lt, SFT, &kp LPAR, &kp LT)
@@ -237,7 +238,7 @@ ZMK_LAYER(base,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LGUI N   &hmml SYM R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmmr SYM E   &hmr RGUI I     X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp X         &hml LALT Q   &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl          X_RB
+    X_LB     &kp X         &hml LALT Q   &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl_morph    X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
 #ifdef TOTEM
     X_LH                                 &kp UNDER     &spc_morph    &lt NAV RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH

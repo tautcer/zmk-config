@@ -2,7 +2,7 @@
 #include "zmk-helpers/key-labels/totem.h"
 
 #define X_LB  &kp ESC
-#define X_RB  &kp UNDER
+#define X_RB  &kp MINUS
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1

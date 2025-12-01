@@ -13,11 +13,13 @@
 #include "zmk-helpers/unicode-chars/currency.dtsi"
 
 #define DEF 0
-#define NAV 1
-#define SYM 2
-#define NUM 3
-#define SYS 4
-#define MOUSE 5
+#define DEF_MACOS 1
+#define NAV 2
+#define NAV_MACOS 3
+#define SYM 4
+#define NUM 5
+#define SYS 6
+#define MOUSE 7
 
 #define XXX &none
 #define ___ &trans
@@ -96,7 +98,7 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 #define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
 #define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
 #define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
-#define TMUX &sk LC(A)
+#define TMUX      &kp LC(A)
 
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 #define MASK_MODS(NAME, MODS, BINDING) \
@@ -232,6 +234,9 @@ ZMK_TAP_DANCE(copy_cut,
 /* Keymap */
 
 ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // SYM + NUM --> SYS
+ZMK_CONDITIONAL_LAYER(sys_macos, NAV_MACOS NUM, SYS)  // SYM + NUM --> SYS
+                                          //
+ZMK_COMBO(toggle_macos,  &tog DEF_MACOS,    LT4 RT4,     DEF DEF_MACOS, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
 ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
@@ -242,9 +247,25 @@ ZMK_LAYER(base,
     X_LB     &kp X         &hml LALT Q   &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl_morph    X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
 #ifdef TOTEM
-    X_LH                                 &kp UNDER     &spc_morph    &lt NAV RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
+    X_LH                                 &kp UNDER     &spc_morph  &lt NAV RET       X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
 #else
     X_LH                                 &lt_spc NAV 0 &lt SYM RET   XXX             X_MH     &smart_shft   SMART_NUM     NAV_BSPC                                    X_RH
+#endif
+//╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
+)
+
+ZMK_LAYER(base_macos,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &quote_morph    X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &hml LCTRL N  &hmml SYM R   &hml LSHFT T  &hml LGUI S   &kp G           X_MM     &kp P         &hmr RGUI H   &hmr RSHFT A  &hmmr SYM E   &hmr RCTRL I    X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &kp X         &hml LALT Q   &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl_morph    X_RB
+//├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
+#ifdef TOTEM
+    X_LH                                 &kp UNDER     &spc_morph    &lt NAV_MACOS RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
+#else
+    X_LH                                 &lt_spc NAV_MACOS 0 &lt SYM RET   XXX             X_MH     &smart_shft   SMART_NUM     NAV_BSPC                                    X_RH
 #endif
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
 )
@@ -254,6 +275,18 @@ ZMK_LAYER(nav,
     X_LT     ___           ___           &kp LS(TAB)   &swapper      TMUX            X_MT     &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &sk LGUI      &sk LALT      &sk LSHFT     &sk LCTRL     ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     NAV_DOWN      NAV_LEFT      NAV_UP        NAV_RIGHT     ___             X_MB     &kp INS       &kp TAB       ___           ___           ___             X_RB
+//├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                 ___           ___           ___             X_MH     ___           ___           CANCEL                                      X_RH
+//╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
+)
+
+ZMK_LAYER(nav_macos,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     ___           ___           &kp LG(TAB)   ___           TMUX            X_MT     &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     NAV_DOWN      NAV_LEFT      NAV_UP        NAV_RIGHT     ___             X_MB     &kp INS       &kp TAB       ___           ___           ___             X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤

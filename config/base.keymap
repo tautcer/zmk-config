@@ -92,13 +92,14 @@ MAKE_HRM(hmmr, &mo, &kp, KEYS_L THUMBS)  // right-hand HRMs
 ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
 ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
 
-#define NAV_LEFT  &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
-#define NAV_RIGHT &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
-#define NAV_UP    &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
-#define NAV_DOWN  &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
-#define NAV_BSPC  &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
-#define NAV_DEL   &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
-#define TMUX      &kp LC(A)
+#define NAV_LEFT      &mt_home 0   LEFT    // tap: left  | long-tap: beginning of line
+#define NAV_RIGHT     &mt_end 0    RIGHT   // tap: right | long-tap: end       of line
+#define NAV_UP        &mt LC(HOME) UP      // tap: up    | long-tap: beginning of document
+#define NAV_DOWN      &mt LC(END)  DOWN    // tap: down  | long-tap: end       of document
+#define NAV_BSPC      &mt LC(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_BSPC_MAC  &mt LA(BSPC) BSPC    // tap: bspc  | long-tap: delete word backward
+#define NAV_DEL       &mt LC(DEL)  DEL     // tap: del   | long-tap: delete word forward
+#define TMUX          &kp LC(A)
 
 // mask CTRL when holding left/right to avoid accidental jumps to beginning/end of document
 #define MASK_MODS(NAME, MODS, BINDING) \
@@ -242,12 +243,12 @@ ZMK_LAYER(base,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &quote_morph    X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LGUI N   &hmml SYM R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmmr SYM E   &hmr RGUI I     X_RM
+    X_LM     &hml LGUI N   &hml LALT R   &hml LSHFT T  &hml LCTRL S  &kp G           X_MM     &kp P         &hmr RCTRL H  &hmr RSHFT A  &hmr RALT E   &hmr RGUI I     X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp X         &hml LALT Q   &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl_morph    X_RB
+    X_LB     &kp X         &kp Q         &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl_morph    X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
 #ifdef TOTEM
-    X_LH                                 &kp UNDER     &spc_morph  &lt NAV RET       X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
+    X_LH                                 &kp UNDER     &hmml SYM SPACE &lt NAV RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
 #else
     X_LH                                 &lt_spc NAV 0 &lt SYM RET   XXX             X_MH     &smart_shft   SMART_NUM     NAV_BSPC                                    X_RH
 #endif
@@ -258,14 +259,14 @@ ZMK_LAYER(base_macos,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
     X_LT     &kp B         &kp L         &kp D         &kp C         &kp V           X_MT     &kp J         &kp Y         &kp O         &kp U         &quote_morph    X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LCTRL N  &hmml SYM R   &hml LSHFT T  &hml LGUI S   &kp G           X_MM     &kp P         &hmr RGUI H   &hmr RSHFT A  &hmmr SYM E   &hmr RCTRL I    X_RM
+    X_LM     &hml LCTRL N  &hml LALT R   &hml LSHFT T  &hml LGUI S   &kp G           X_MM     &kp P         &hmr RGUI H   &hmr RSHFT A  &hmr RALT E   &hmr RCTRL I    X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp X         &hml LALT Q   &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl_morph    X_RB
+    X_LB     &kp X         &kp Q         &kp M         &kp W         &kp Z           X_MB     &kp K         &kp F         &comma_morph  &dot_morph    &qexcl_morph    X_RB
 //├──────┤ ╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼───────────────────────────╯ ├──────┤
 #ifdef TOTEM
-    X_LH                                 &kp UNDER     &spc_morph    &lt NAV_MACOS RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC                                    X_RH
+    X_LH                                 &kp UNDER     &hmml SYM SPACE &lt NAV_MACOS RET     X_MH     SMART_NUM     &smart_shft   NAV_BSPC_MAC                          X_RH
 #else
-    X_LH                                 &lt_spc NAV_MACOS 0 &lt SYM RET   XXX             X_MH     &smart_shft   SMART_NUM     NAV_BSPC                                    X_RH
+    X_LH                                 &lt_spc NAV_MACOS 0 &lt SYM RET   XXX             X_MH     &smart_shft   SMART_NUM     NAV_BSPC                              X_RH
 #endif
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
 )

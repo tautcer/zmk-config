@@ -37,7 +37,7 @@ ZMK_MACRO(mc_colpercsslash,
 ZMK_MACRO(mc_tisl,
     wait-ms = <0>;
     tap-ms = <5>;
-    bindings = <&kp TILDE &kp SPACE &kp SLASH>;
+    bindings = <&kp TILDE &kp SLASH &kp SPACE>;
 )
 
 // ./

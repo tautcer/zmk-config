@@ -17,9 +17,10 @@
 #define NAV 2
 #define NAV_MACOS 3
 #define SYM 4
-#define NUM 5
-#define SYS 6
-#define MOUSE 7
+#define MACROS 5
+#define NUM 6
+#define SYS 7
+#define MOUSE 8
 
 #define XXX &none
 #define ___ &trans
@@ -78,6 +79,7 @@ MAKE_HRM(hmmr, &mo, &kp, KEYS_L THUMBS)  // right-hand HRMs
 #include "combos.dtsi"  // must be sources after HRM-combo hack
 #include "mouse.dtsi"
 #include "extra_keys.h"
+#include "macros.dtsi"
 
 /* Nav cluster */
 
@@ -191,31 +193,6 @@ ZMK_MACRO(dot_spc,
 )
 SIMPLE_MORPH(r_arr, SFT, &r_sml_arr, &r_big_arr)
 SIMPLE_MORPH(l_arr, SFT, &l_sml_arr, &l_big_arr)
-// ->
-ZMK_MACRO(r_sml_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp MINUS  &kp GT>;
-)
-// =>
-ZMK_MACRO(r_big_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp EQUAL  &kp GT>;
-)
-// <-
-ZMK_MACRO(l_sml_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp LT &kp MINUS>;
-)
-// <=
-ZMK_MACRO(l_big_arr,
-    wait-ms = <0>;
-    tap-ms = <5>;
-    bindings = <&kp LT &kp EQUAL>;
-)
-
 // tap: backspace | lshft + tap: delete | rshft + tap: shift-delete
 ZMK_MOD_MORPH(bs_del,
     bindings = <&kp BSPC>, <&kp DEL>;
@@ -302,9 +279,21 @@ ZMK_LAYER(SYM,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &hml LGUI EXCL &hml LALT STAR &hml LSHIFT FSLH &hml LCTRL EQUAL &kp AMPS X_MM    &kp HASH      &hmr RCTRL LPAR &hmr RSHIFT RPAR &hmr RALT SEMICOLON &hml RGUI DQT X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp TILDE     &kp PLUS      &kp LBKT      &kp RBKT      &kp PRCNT       X_MB     &kp AT        &kp COLON     &kp COMMA     &kp DOT       &kp APOS        X_RB
+    X_LB     &kp TILDE     &kp PLUS      &kp LBKT      &kp RBKT      &kp PRCNT       X_MB     &kp AT        &kp COLON     &kp COMMA     &kp DOT       &lt MACROS COMMA X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           &smart_shft   NAV_BSPC                                    X_RH
+//╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
+)
+
+ZMK_LAYER(MACROS,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     ___           ___           ___           ___           ___             X_MT     &mc_colpercsslash U_WH_D        U_MS_U         U_WH_U       U_WH_R          X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     ___           ___           ___           ___           ___             X_MM     &mc_tisl      &mc_ds        &mc_dds       U_MS_R       ___             X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     ___           ___           ___           ___           ___             X_MB     ___           &mkp MB4      &mkp MCLK     &mkp MB5     ___             X_RB
+//├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                 ___           ___           ___             X_MH     &mkp LCLK     &mkp RCLK     ___                                         X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
 )
 

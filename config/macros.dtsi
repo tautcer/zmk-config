@@ -1,0 +1,62 @@
+// ->
+ZMK_MACRO(r_sml_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp MINUS  &kp GT>;
+)
+
+// =>
+ZMK_MACRO(r_big_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp EQUAL  &kp GT>;
+)
+
+// <-
+ZMK_MACRO(l_sml_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp LT &kp MINUS>;
+)
+
+// <=
+ZMK_MACRO(l_big_arr,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp LT &kp EQUAL>;
+)
+
+// :%s/
+ZMK_MACRO(mc_colpercsslash,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp COLON &kp PERCENT &kp S &kp SLASH>;
+)
+
+// ~/
+ZMK_MACRO(mc_tisl,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp TILDE &kp SPACE &kp SLASH>;
+)
+
+// ./
+ZMK_MACRO(mc_ds,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp DOT &kp SLASH>;
+)
+
+// ../
+ZMK_MACRO(mc_dds,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp DOT &kp DOT &kp SLASH>;
+)
+
+// - [ ] 
+ZMK_MACRO(mc_otask,
+    wait-ms = <0>;
+    tap-ms = <5>;
+    bindings = <&kp MINUS &kp SPACE &kp LBKT &kp SPACE &kp RBKT &kp SPACE>;
+)

@@ -17,7 +17,7 @@
 #define NAV 2
 #define NAV_MACOS 3
 #define SYM 4
-#define MACROS 5
+#define SHORTCUTS 5
 #define NUM 6
 #define SYS 7
 #define MOUSE 8
@@ -74,12 +74,6 @@ MAKE_HRM(hmmr, &mo, &kp, KEYS_L THUMBS)  // right-hand HRMs
     MAKE_HRM(hm_combo_ ## NAME, &kp, TAP, SIDE THUMBS) \
     ZMK_COMBO_6(NAME, &hm_combo_ ## NAME HOLD 0, KEYPOS, LAYERS, COMBO_TERM, COMBO_IDLE)
 
-/* Combos, sequences, mouse emulation */
-
-#include "combos.dtsi"  // must be sources after HRM-combo hack
-#include "mouse.dtsi"
-#include "extra_keys.h"
-#include "macros.dtsi"
 
 /* Nav cluster */
 
@@ -111,6 +105,24 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
     )
 MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
 MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
+
+#define MACRO(NAME, BINDING) \
+    ZMK_MACRO(NAME, \
+        wait-ms = <5>; \
+        tap-ms = <5>; \
+        bindings = <BINDING>; \
+    )
+
+#define TAPHOLD_TP(NAME, TAP, HOLD) \
+    ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; MT_CORE)
+
+/* Combos, sequences, mouse emulation */
+
+#include "combos.dtsi"  // must be sources after HRM-combo hack
+#include "mouse.dtsi"
+#include "extra_keys.h"
+#include "macros.dtsi"
+#include "shortcuts.dtsi"
 
 /* Caps-word, num-word and smart-mouse */
 
@@ -250,11 +262,11 @@ ZMK_LAYER(base_macos,
 
 ZMK_LAYER(nav,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           &kp LS(TAB)   &swapper      TMUX            X_MT     &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
+    X_LT     ___           ___           &kp LS(TAB)   &swapper      ___             X_MT     &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &sk LGUI      &sk LALT      &sk LSHFT     &sk LCTRL     ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     NAV_DOWN      NAV_LEFT      NAV_UP        NAV_RIGHT     ___             X_MB     &kp INS       &kp TAB       ___           ___           ___             X_RB
+    X_LB     NAV_DOWN      NAV_LEFT      NAV_UP        NAV_RIGHT     TMUX            X_MB     &kp INS       &kp TAB       ___           ___           ___             X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           ___           CANCEL                                      X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
@@ -275,23 +287,23 @@ ZMK_LAYER(nav_macos,
 
 ZMK_LAYER(SYM,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     &kp GRAVE     &kp LT        &kp GT        &kp MINUS     &kp PIPE        X_MT     &kp CARET     &kp LBRC      &kp RBRC      &kp DLLR      &r_arr          X_RT
+    X_LT     &th_grave 0 0 &th_lt 0 0    &th_gt 0 0    &th_minus 0 0 &th_pipe 0 0   X_MT     &th_caret 0 0 &th_lbrc 0 0  &th_rbrc 0 0  &th_dllr 0 0  &r_arr          X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     &hml LGUI EXCL &hml LALT STAR &hml LSHIFT FSLH &hml LCTRL EQUAL &kp AMPS X_MM    &kp HASH      &hmr RCTRL LPAR &hmr RSHIFT RPAR &hmr RALT SEMICOLON &hml RGUI DQT X_RM
+    X_LM     &th_excl 0 0  &th_star 0 0  &th_fslh 0 0  &th_equal 0 0 &th_amps 0 0  X_MM     &th_hash 0 0  &th_lpar 0 0  &th_rpar 0 0  &th_semicolon 0 0 &th_dqo 0 0  X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     &kp TILDE     &kp PLUS      &kp LBKT      &kp RBKT      &kp PRCNT       X_MB     &kp AT        &kp COLON     &kp COMMA     &kp DOT       &lt MACROS COMMA X_RB
+    X_LB     &th_tilde 0 0 &th_plus 0 0  &th_lbkt 0 0  &th_rbkt 0 0  &th_perc 0 0  X_MB     &th_at 0 0    &th_colon 0 0 &th_comma 0 0 &th_dot 0 0    ___             X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           &smart_shft   NAV_BSPC                                    X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
 )
 
-ZMK_LAYER(MACROS,
+ZMK_LAYER(SHORTCUTS,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           ___           ___           ___             X_MT     &mc_colpercsslash ___       ___           ___           ___             X_RT
+    X_LT     ___           ___           ___           &mc_copy      &mc_paste       X_MT     &mc_colpercsslash &mc_zoom_in &mc_zoom_out &mc_reset_zoom ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     ___           ___           ___           ___           ___             X_MM     &mc_tisl      &mc_ds        &mc_dds       ___           ___             X_RM
+    X_LM     ___           &mc_refresh   ___           &mc_new       &mc_reopen      X_MM     &mc_tisl      &mc_ds        &mc_dds       ___           ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           ___           ___             X_MB     &mc_otask     ___           ___           ___           ___             X_RB
+    X_LB     ___           ___           ___           &mc_close     ___             X_MB     &mc_otask     ___           ___           ___           ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           ___           ___                                         X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯

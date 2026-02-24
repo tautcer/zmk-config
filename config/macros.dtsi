@@ -35,7 +35,7 @@ ZMK_MACRO(mc_colpercsslash,
 
 // ~/
 ZMK_MACRO(mc_tisl,
-    wait-ms = <0>;
+    wait-ms = <5>;
     tap-ms = <5>;
     bindings = <&kp TILDE &kp SLASH &kp SPACE>;
 )
@@ -60,3 +60,282 @@ ZMK_MACRO(mc_otask,
     tap-ms = <5>;
     bindings = <&kp MINUS &kp SPACE &kp LBKT &kp SPACE &kp RBKT &kp SPACE>;
 )
+
+// ' 
+MACRO(mc_sqo,                 &kp SQT &kp SPACE)
+// End' 
+MACRO(mc_end_sqo,             &kp END &mc_sqo)
+// tap: '  | hold: End' 
+TAPHOLD_TP(th_sqo,            &mc_sqo, &mc_end_sqo)
+
+// " 
+MACRO(mc_dqo,                 &kp DQT &kp SPACE)
+// End" 
+MACRO(mc_end_dqo,             &kp END &mc_dqo)
+// tap: "  | hold: End" 
+TAPHOLD_TP(th_dqo,            &mc_dqo, &mc_end_dqo)
+
+// ` 
+MACRO(mc_bti,                 &kp GRAVE &kp SPACE)
+// End` 
+MACRO(mc_end_bti,             &kp END &mc_bti)
+// tap: `  | hold: End` 
+TAPHOLD_TP(th_bti,            &mc_bti, &mc_end_bti)
+
+// &&
+MACRO(mc_and,                 &kp AMPS &kp AMPS)
+// → &&
+MACRO(mc_right_and,           &kp RIGHT &kp SPACE &kp AMPS &kp AMPS)
+// tap: && | hold: → &&
+TAPHOLD_TP(th_and,            &mc_and, &mc_right_and)
+
+// ||
+MACRO(mc_or,                  &kp PIPE &kp PIPE)
+// → ||
+MACRO(mc_right_or,            &kp RIGHT &kp SPACE &kp PIPE &kp PIPE)
+// tap: || | hold: → ||
+TAPHOLD_TP(th_or,             &mc_or, &mc_right_or)
+
+// {
+MACRO(mc_lbrc,                &kp LBRC)
+// End {
+MACRO(mc_end_lbrc,            &kp END &kp SPACE &kp LBRC)
+// tap: { | hold: End {
+TAPHOLD_TP(th_lbrc,           &mc_lbrc, &mc_end_lbrc)
+
+// }
+MACRO(mc_rbrc,                &kp RBRC)
+// End }
+MACRO(mc_end_rbrc,            &kp END &kp SPACE &kp RBRC)
+// tap: } | hold: End }
+TAPHOLD_TP(th_rbrc,           &mc_rbrc, &mc_end_rbrc)
+
+// (
+MACRO(mc_lpar,                &kp LPAR)
+// End(
+MACRO(mc_end_lpar,            &kp END &kp LPAR)
+// tap: ( | hold: End(
+TAPHOLD_TP(th_lpar,           &mc_lpar, &mc_end_lpar)
+
+// )
+MACRO(mc_rpar,                &kp RPAR)
+// End)
+MACRO(mc_end_rpar,            &kp END &kp RPAR)
+// tap: ) | hold: End)
+TAPHOLD_TP(th_rpar,           &mc_rpar, &mc_end_rpar)
+
+// ()
+MACRO(mc_pars,                &kp LPAR &kp RPAR)
+// End()
+MACRO(mc_end_pars,            &kp END &kp LPAR &kp RPAR)
+// tap: () | hold: End()
+TAPHOLD_TP(th_pars,           &mc_pars, &mc_end_pars)
+
+// [
+MACRO(mc_lbkt,                &kp LBKT)
+// →[
+MACRO(mc_end_lbkt,            &kp RIGHT &kp LBKT)
+// tap: [ | hold: →[
+TAPHOLD_TP(th_lbkt,           &mc_lbkt, &mc_end_lbkt)
+
+// ]
+MACRO(mc_rbkt,                &kp RBKT)
+// →]
+MACRO(mc_end_rbkt,            &kp RIGHT &kp RBKT)
+// tap: ] | hold: →]
+TAPHOLD_TP(th_rbkt,           &mc_rbkt, &mc_end_rbkt)
+
+// End();
+MACRO(mc_pars_semi,           &kp END &kp LPAR &kp RPAR &kp SEMI)
+
+// """ 
+MACRO(mc_tdqo,                &mc_dqo &mc_dqo &mc_dqo)
+// """↵
+MACRO(mc_tdqo_ent,            &mc_tdqo &kp ENTER)
+// tap: """  | hold: """ ↵
+TAPHOLD_TP(th_tdqo,           &mc_tdqo, &mc_tdqo_ent)
+
+// ``` 
+MACRO(mc_tbti,                &mc_bti &mc_bti &mc_bti)
+// ```↵
+MACRO(mc_tbti_ent,            &mc_tbti &kp ENTER)
+// tap: ```  | hold: ``` ↵
+TAPHOLD_TP(th_tbti,           &mc_tbti, &mc_tbti_ent)
+
+// End {↵
+MACRO(mc_braces_new,          &kp END &kp SPACE &kp LBRC &kp ENTER)
+
+// ->
+MACRO(mc_sarrow,              &kp MINUS &kp GT)
+// → ->
+MACRO(mc_end_sarrow,          &kp RIGHT &kp SPACE &kp MINUS &kp GT)
+// tap: -> | hold: → ->
+TAPHOLD_TP(th_sarrow,         &mc_sarrow, &mc_end_sarrow)
+
+// =>
+MACRO(mc_darrow,              &kp EQUAL &kp GT)
+// → =>
+MACRO(mc_end_darrow,          &kp RIGHT &kp SPACE &kp EQUAL &kp GT)
+// tap: => | hold: → =>
+TAPHOLD_TP(th_darrow,         &mc_darrow, &mc_end_darrow)
+
+// ${
+MACRO(mc_dcurly,              &kp DOLLAR &kp LBRC)
+// #{
+MACRO(mc_hcurly,              &kp HASH &kp LBRC)
+// %{
+MACRO(mc_pcurly,              &kp PERCENT &kp LBRC)
+
+// %
+MACRO(mc_perc,                &kp PERCENT)
+// End %
+MACRO(mc_end_perc,            &kp END &kp SPACE &kp PERCENT)
+// tap: % | hold: End %
+TAPHOLD_TP(th_perc,           &mc_perc, &mc_end_perc)
+
+// <
+MACRO(mc_lt,                  &kp LT)
+// → <
+MACRO(mc_end_lt,              &kp RIGHT &kp SPACE &mc_lt )
+// tap: < | hold: → <
+TAPHOLD_TP(th_lt,             &mc_lt, &mc_end_lt)
+
+// >
+MACRO(mc_gt,                  &kp GT)
+// → >
+MACRO(mc_end_gt,              &kp RIGHT &kp SPACE &mc_gt )
+// tap: > | hold: → >
+TAPHOLD_TP(th_gt,             &mc_gt, &mc_end_gt)
+
+// +
+MACRO(mc_plus,                &kp PLUS)
+// → +
+MACRO(mc_end_plus,            &kp RIGHT &kp SPACE &mc_plus )
+// tap: + | hold: → +
+TAPHOLD_TP(th_plus,           &mc_plus, &mc_end_plus)
+
+// -
+MACRO(mc_minus,               &kp MINUS)
+// → -
+MACRO(mc_end_minus,           &kp RIGHT &kp SPACE &mc_minus )
+// tap: - | hold: → -
+TAPHOLD_TP(th_minus,          &mc_minus, &mc_end_minus)
+
+// *
+MACRO(mc_star,                &kp STAR)
+// → *
+MACRO(mc_end_star,            &kp RIGHT &kp SPACE &mc_star )
+// tap: * | hold: → *
+TAPHOLD_TP(th_star,           &mc_star, &mc_end_star)
+
+// ?
+MACRO(mc_qmark,               &kp QMARK )
+// End?
+MACRO(mc_end_qmark,           &kp END &mc_qmark )
+// tap: ? | hold: End?
+TAPHOLD_TP(th_qmark,          &mc_qmark, &mc_end_qmark)
+
+// !
+MACRO(mc_excl,               &kp EXCL)
+// End!
+MACRO(mc_end_excl,           &kp END &mc_excl)
+// tap: ! | hold: End!
+TAPHOLD_TP(th_excl,          &mc_excl, &mc_end_excl)
+
+// `
+MACRO(mc_grave,               &kp GRAVE)
+// End`
+MACRO(mc_end_grave,           &kp END &kp SPACE &mc_grave)
+// tap: ` | hold: End `
+TAPHOLD_TP(th_grave,          &mc_grave, &mc_end_grave)
+
+// |
+MACRO(mc_pipe,                &kp PIPE)
+// End |
+MACRO(mc_end_pipe,            &kp END &kp SPACE &mc_pipe)
+// tap: | | hold: End |
+TAPHOLD_TP(th_pipe,           &mc_pipe, &mc_end_pipe)
+
+// ^
+MACRO(mc_caret,               &kp CARET)
+// End ^
+MACRO(mc_end_caret,           &kp END &kp SPACE &mc_caret)
+// tap: ^ | hold: End ^
+TAPHOLD_TP(th_caret,          &mc_caret, &mc_end_caret)
+
+// $
+MACRO(mc_dllr,                &kp DLLR)
+// End $
+MACRO(mc_end_dllr,            &kp END &kp SPACE &mc_dllr)
+// tap: $ | hold: End $
+TAPHOLD_TP(th_dllr,           &mc_dllr, &mc_end_dllr)
+
+// &
+MACRO(mc_amps,                &kp AMPS)
+// End &
+MACRO(mc_end_amps,            &kp END &kp SPACE &mc_amps)
+// tap: & | hold: End &
+TAPHOLD_TP(th_amps,           &mc_amps, &mc_end_amps)
+
+// #
+MACRO(mc_hash,                &kp HASH)
+// End #
+MACRO(mc_end_hash,            &kp END &kp SPACE &mc_hash)
+// tap: # | hold: End #
+TAPHOLD_TP(th_hash,           &mc_hash, &mc_end_hash)
+
+// ~
+MACRO(mc_tilde,               &kp TILDE)
+// End ~
+MACRO(mc_end_tilde,           &kp END &kp SPACE &mc_tilde)
+// tap: ~ | hold: End ~
+TAPHOLD_TP(th_tilde,          &mc_tilde, &mc_end_tilde)
+
+// @
+MACRO(mc_at,                  &kp AT)
+// End @
+MACRO(mc_end_at,              &kp END &kp SPACE &mc_at)
+// tap: @ | hold: End @
+TAPHOLD_TP(th_at,             &mc_at, &mc_end_at)
+
+// :
+MACRO(mc_colon,               &kp COLON)
+// End :
+MACRO(mc_end_colon,           &kp END &kp SPACE &mc_colon)
+// tap: : | hold: End :
+TAPHOLD_TP(th_colon,          &mc_colon, &mc_end_colon)
+
+// ,
+MACRO(mc_comma,               &kp COMMA)
+// End ,
+MACRO(mc_end_comma,           &kp END &kp SPACE &mc_comma)
+// tap: , | hold: End ,
+TAPHOLD_TP(th_comma,          &mc_comma, &mc_end_comma)
+
+// .
+MACRO(mc_dot,                 &kp DOT)
+// End .
+MACRO(mc_end_dot,             &kp END &kp SPACE &mc_dot)
+// tap: . | hold: End .
+TAPHOLD_TP(th_dot,            &mc_dot, &mc_end_dot)
+
+// /
+MACRO(mc_fslh,                &kp FSLH)
+// End /
+MACRO(mc_end_fslh,            &kp END &kp SPACE &mc_fslh)
+// tap: / | hold: End /
+TAPHOLD_TP(th_fslh,           &mc_fslh, &mc_end_fslh)
+
+// =
+MACRO(mc_equal,               &kp EQUAL)
+// End =
+MACRO(mc_end_equal,           &kp END &kp SPACE &mc_equal)
+// tap: = | hold: End =
+TAPHOLD_TP(th_equal,          &mc_equal, &mc_end_equal)
+
+// ;
+MACRO(mc_semicolon,           &kp SEMICOLON)
+// End ;
+MACRO(mc_end_semicolon,       &kp END &kp SPACE &mc_semicolon)
+// tap: ; | hold: End ;
+TAPHOLD_TP(th_semicolon,      &mc_semicolon, &mc_end_semicolon)

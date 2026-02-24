@@ -1,0 +1,11 @@
+MACRO(mc_refresh,            &kp LG(R))
+MACRO(mc_close,              &kp LG(W))
+MACRO(mc_reopen,             &kp LG(LS(T)))
+MACRO(mc_new,                &kp LG(T))
+
+MACRO(mc_zoom_out,           &kp LG(MINUS))
+MACRO(mc_zoom_in,            &kp LG(PLUS))
+MACRO(mc_reset_zoom,         &kp LG(N0))
+
+MACRO(mc_copy,              &kp LG(C))
+MACRO(mc_paste,              &kp LG(V))

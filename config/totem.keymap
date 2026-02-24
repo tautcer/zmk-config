@@ -1,8 +1,8 @@
 /* source key position labels */
 #include "zmk-helpers/key-labels/totem.h"
 
-#define X_LB  &kp ESC
-#define X_RB  &kp MINUS
+#define X_LB  &lt SHORTCUTS ESC
+#define X_RB  &lt SHORTCUTS MINUS
 
 /* activate bluetooth */
 #define CONFIG_WIRELESS 1

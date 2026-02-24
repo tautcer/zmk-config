@@ -69,3 +69,18 @@ ZMK_COMBO(pipe,  &kp PIPE,     RM3 RB3,     DEF DEF_MACOS NAV NUM, COMBO_TERM_SL
 
 ZMK_COMBO(left_arr,  &l_arr,   RT1 RT3,     DEF DEF_MACOS NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
 ZMK_COMBO(right_arr, &r_arr,   RM1 RM3,     DEF DEF_MACOS NAV NUM, COMBO_TERM_SLOW, COMBO_IDLE_SLOW)
+
+
+// ==
+MACRO(mc_eqeq,                &kp EQUAL &kp EQUAL)
+// → ==
+MACRO(mc_end_eqeq,            &kp RIGHT &kp SPACE &kp EQUAL &kp EQUAL)
+// tap: == | hold: → ==
+TAPHOLD_TP(th_eqeq,           &mc_eqeq, &mc_end_eqeq)
+
+// !=
+MACRO(mc_noteq,               &kp EXCL &kp EQUAL)
+// → !=
+MACRO(mc_end_noteq,           &kp RIGHT &kp SPACE &kp EXCL &kp EQUAL)
+// tap: != | hold: → !=
+TAPHOLD_TP(th_noteq,          &mc_noteq, &mc_end_noteq)

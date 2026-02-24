@@ -11,6 +11,7 @@
 
 #include "zmk-helpers/helper.h"
 #include "zmk-helpers/unicode-chars/currency.dtsi"
+#include "helpers.h"
 
 #define DEF 0
 #define DEF_MACOS 1
@@ -78,12 +79,6 @@ MAKE_HRM(hmmr, &mo, &kp, KEYS_L THUMBS)  // right-hand HRMs
 /* Nav cluster */
 
 // long-tap action on hold, short-tap action on all interrupts
-#define MT_CORE \
-    flavor = "tap-preferred"; \
-    tapping-term-ms = <220>; \
-    quick-tap-ms = <220>; \
-    hold-trigger-key-positions = <0>;
-
 &mt { MT_CORE };
 ZMK_HOLD_TAP(mt_home, bindings = <&masked_home>, <&kp>; MT_CORE)
 ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
@@ -105,16 +100,6 @@ ZMK_HOLD_TAP(mt_end, bindings = <&masked_end>, <&kp>; MT_CORE)
     )
 MASK_MODS(masked_home, (MOD_LCTL), &kp HOME)
 MASK_MODS(masked_end,  (MOD_LCTL), &kp END)
-
-#define MACRO(NAME, BINDING) \
-    ZMK_MACRO(NAME, \
-        wait-ms = <5>; \
-        tap-ms = <5>; \
-        bindings = <BINDING>; \
-    )
-
-#define TAPHOLD_TP(NAME, TAP, HOLD) \
-    ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; MT_CORE)
 
 /* Combos, sequences, mouse emulation */
 
@@ -274,11 +259,11 @@ ZMK_LAYER(nav,
 
 ZMK_LAYER(nav_macos,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           &kp LG(TAB)   ___           TMUX            X_MT     &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
+    X_LT     ___           ___           &kp LG(TAB)   ___           ___            X_MT      &kp PG_UP     NAV_BSPC      NAV_UP        NAV_DEL       ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LM     &sk LCTRL     &sk LALT      &sk LSHFT     &sk LGUI      ___             X_MM     &kp PG_DN     NAV_LEFT      NAV_DOWN      NAV_RIGHT     &kp RET         X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     NAV_DOWN      NAV_LEFT      NAV_UP        NAV_RIGHT     ___             X_MB     &kp INS       &kp TAB       ___           ___           ___             X_RB
+    X_LB     NAV_DOWN      NAV_LEFT      NAV_UP        NAV_RIGHT     TMUX            X_MB     &kp INS       &kp TAB       ___           ___           ___             X_RB
 //├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           ___           CANCEL                                      X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
@@ -299,11 +284,11 @@ ZMK_LAYER(SYM,
 
 ZMK_LAYER(SHORTCUTS,
 //╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
-    X_LT     ___           ___           ___           &mc_copy      &mc_paste       X_MT     &mc_colpercsslash &mc_zoom_in &mc_zoom_out &mc_reset_zoom ___             X_RT
+    X_LT     &mc_move_to_screen ___      ___           &mc_prev_tab  &mc_next_tab    X_MT     &mc_colpercsslash &mc_zoom_in &mc_zoom_out &mc_reset_zoom ___             X_RT
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LM     ___           &mc_refresh   ___           &mc_new       &mc_reopen      X_MM     &mc_tisl      &mc_ds        &mc_dds       ___           ___             X_RM
+    X_LM     &mc_prev_zone &mc_refresh   &mc_new       &mc_next_zone  ___            X_MM     &mc_tisl      &mc_ds        &mc_dds       ___           ___             X_RM
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
-    X_LB     ___           ___           ___           &mc_close     ___             X_MB     &mc_otask     ___           ___           ___           ___             X_RB
+    X_LB     &mc_screen    ___           &mc_reopen    &mc_close     ___             X_MB     &mc_otask     ___           ___           ___           ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           ___           ___                                         X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯

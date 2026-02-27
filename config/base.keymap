@@ -20,9 +20,10 @@
 #define SYM 4
 #define SHORTCUTS 5
 #define SHORTCUTS_MAC 6
-#define NUM 7
-#define SYS 8
-#define MOUSE 9
+#define SYM_MAC 7
+#define NUM 8
+#define SYS 9
+#define MOUSE 10
 
 #define XXX &none
 #define ___ &trans
@@ -212,6 +213,7 @@ ZMK_TAP_DANCE(copy_cut,
 ZMK_CONDITIONAL_LAYER(sys, NAV NUM, SYS)  // SYM + NUM --> SYS
 ZMK_CONDITIONAL_LAYER(sys_macos, NAV_MACOS NUM, SYS)  // SYM + NUM --> SYS
 ZMK_CONDITIONAL_LAYER(shortcuts_mac, DEF_MACOS SHORTCUTS, SHORTCUTS_MAC)  // macOS + SHORTCUTS --> SHORTCUTS_MAC
+ZMK_CONDITIONAL_LAYER(sym_mac, DEF_MACOS SYM, SYM_MAC)                   // macOS + SYM --> SYM_MAC
                                           //
 ZMK_COMBO(toggle_macos,  &tog DEF_MACOS,    LT4 RT4,     DEF DEF_MACOS, COMBO_TERM_SLOW, COMBO_IDLE_FAST)
 
@@ -304,6 +306,18 @@ ZMK_LAYER(shortcuts_mac,
 //├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
     X_LB     &mc_screen    ___           &mc_reopen    &mc_close     ___             X_MB      ___           ___           ___           ___           ___             X_RB
 //├──────┤ ╰─────────────┼─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
+    X_LH                                 ___           ___           ___             X_MH     ___           ___           ___                                         X_RH
+//╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
+)
+
+ZMK_LAYER(sym_mac,
+//╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭──────╮
+    X_LT     &th_grave_mac 0 0 ___       ___           ___           &th_pipe_mac 0 0 X_MT    &th_caret_mac 0 0 &th_lbrc_mac 0 0 &th_rbrc_mac 0 0 &th_dllr_mac 0 0 ___ X_RT
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LM     &th_excl_mac 0 0 ___       &th_fslh_mac 0 0 &th_equal_mac 0 0 &th_amps_mac 0 0 X_MM &th_hash_mac 0 0 &th_lpar_mac 0 0 &th_rpar_mac 0 0 &th_semicolon_mac 0 0 &th_dqo_mac 0 0 X_RM
+//├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├──────┤
+    X_LB     &th_tilde_mac 0 0 ___      ___           ___           &th_perc_mac 0 0 X_MB    &th_at_mac 0 0 &th_colon_mac 0 0 &th_comma_mac 0 0 &th_dot_mac 0 0 ___   X_RB
+//├──────┤ ╰─────────────┴─────────────┴─────────────┼─────────────┼─────────────┤ ├──────┤ ├─────────────┼─────────────┼─────────────┴───────────────────────────╯ ├──────┤
     X_LH                                 ___           ___           ___             X_MH     ___           ___           ___                                         X_RH
 //╰──────╯                             ╰─────────────┴─────────────┴─────────────╯ ╰──────╯ ╰─────────────┴─────────────┴─────────────╯                             ╰──────╯
 )

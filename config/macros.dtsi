@@ -356,3 +356,115 @@ MACRO(mc_semicolon,           &kp SEMICOLON)
 MACRO(mc_end_semicolon,       &kp END &kp SPACE &mc_semicolon)
 // tap: ; | hold: End ;
 TAPHOLD_TP(th_semicolon,      &mc_semicolon, &mc_end_semicolon)
+
+// === macOS variants (replace &kp END with &kp LG(RIGHT)) ===
+
+// macOS: End` 
+MACRO(mc_end_grave_mac,       &kp LG(RIGHT) &kp SPACE &mc_grave)
+// tap: `  | hold: End` (mac)
+TAPHOLD_TP(th_grave_mac,      &mc_grave, &mc_end_grave_mac)
+
+// macOS: End |
+MACRO(mc_end_pipe_mac,        &kp LG(RIGHT) &kp SPACE &mc_pipe)
+// tap: |  | hold: End | (mac)
+TAPHOLD_TP(th_pipe_mac,       &mc_pipe, &mc_end_pipe_mac)
+
+// macOS: End ^
+MACRO(mc_end_caret_mac,       &kp LG(RIGHT) &kp SPACE &mc_caret)
+// tap: ^  | hold: End ^ (mac)
+TAPHOLD_TP(th_caret_mac,      &mc_caret, &mc_end_caret_mac)
+
+// macOS: End $
+MACRO(mc_end_dllr_mac,        &kp LG(RIGHT) &kp SPACE &mc_dllr)
+// tap: $  | hold: End $ (mac)
+TAPHOLD_TP(th_dllr_mac,       &mc_dllr, &mc_end_dllr_mac)
+
+// macOS: End {
+MACRO(mc_end_lbrc_mac,        &kp LG(RIGHT) &kp SPACE &kp LBRC)
+// tap: {  | hold: End { (mac)
+TAPHOLD_TP(th_lbrc_mac,       &mc_lbrc, &mc_end_lbrc_mac)
+
+// macOS: End }
+MACRO(mc_end_rbrc_mac,        &kp LG(RIGHT) &kp SPACE &kp RBRC)
+// tap: }  | hold: End } (mac)
+TAPHOLD_TP(th_rbrc_mac,       &mc_rbrc, &mc_end_rbrc_mac)
+
+// macOS: End!
+MACRO(mc_end_excl_mac,        &kp LG(RIGHT) &mc_excl)
+// tap: !  | hold: End! (mac)
+TAPHOLD_TP(th_excl_mac,       &mc_excl, &mc_end_excl_mac)
+
+// macOS: End &
+MACRO(mc_end_amps_mac,        &kp LG(RIGHT) &kp SPACE &mc_amps)
+// tap: &  | hold: End & (mac)
+TAPHOLD_TP(th_amps_mac,       &mc_amps, &mc_end_amps_mac)
+
+// macOS: End #
+MACRO(mc_end_hash_mac,        &kp LG(RIGHT) &kp SPACE &mc_hash)
+// tap: #  | hold: End # (mac)
+TAPHOLD_TP(th_hash_mac,       &mc_hash, &mc_end_hash_mac)
+
+// macOS: End(
+MACRO(mc_end_lpar_mac,        &kp LG(RIGHT) &kp LPAR)
+// tap: (  | hold: End( (mac)
+TAPHOLD_TP(th_lpar_mac,       &mc_lpar, &mc_end_lpar_mac)
+
+// macOS: End)
+MACRO(mc_end_rpar_mac,        &kp LG(RIGHT) &kp RPAR)
+// tap: )  | hold: End) (mac)
+TAPHOLD_TP(th_rpar_mac,       &mc_rpar, &mc_end_rpar_mac)
+
+// macOS: End ;
+MACRO(mc_end_semicolon_mac,   &kp LG(RIGHT) &kp SPACE &mc_semicolon)
+// tap: ;  | hold: End ; (mac)
+TAPHOLD_TP(th_semicolon_mac,  &mc_semicolon, &mc_end_semicolon_mac)
+
+// macOS: End"
+MACRO(mc_end_dqo_mac,         &kp LG(RIGHT) &mc_dqo)
+// tap: "  | hold: End" (mac)
+TAPHOLD_TP(th_dqo_mac,        &mc_dqo, &mc_end_dqo_mac)
+
+// macOS: End ~
+MACRO(mc_end_tilde_mac,       &kp LG(RIGHT) &kp SPACE &mc_tilde)
+// tap: ~  | hold: End ~ (mac)
+TAPHOLD_TP(th_tilde_mac,      &mc_tilde, &mc_end_tilde_mac)
+
+// macOS: End %
+MACRO(mc_end_perc_mac,        &kp LG(RIGHT) &kp SPACE &kp PERCENT)
+// tap: %  | hold: End % (mac)
+TAPHOLD_TP(th_perc_mac,       &mc_perc, &mc_end_perc_mac)
+
+// macOS: End @
+MACRO(mc_end_at_mac,          &kp LG(RIGHT) &kp SPACE &mc_at)
+// tap: @  | hold: End @ (mac)
+TAPHOLD_TP(th_at_mac,         &mc_at, &mc_end_at_mac)
+
+// macOS: End :
+MACRO(mc_end_colon_mac,       &kp LG(RIGHT) &kp SPACE &mc_colon)
+// tap: :  | hold: End : (mac)
+TAPHOLD_TP(th_colon_mac,      &mc_colon, &mc_end_colon_mac)
+
+// macOS: End ,
+MACRO(mc_end_comma_mac,       &kp LG(RIGHT) &kp SPACE &mc_comma)
+// tap: ,  | hold: End , (mac)
+TAPHOLD_TP(th_comma_mac,      &mc_comma, &mc_end_comma_mac)
+
+// macOS: End .
+MACRO(mc_end_dot_mac,         &kp LG(RIGHT) &kp SPACE &mc_dot)
+// tap: .  | hold: End . (mac)
+TAPHOLD_TP(th_dot_mac,        &mc_dot, &mc_end_dot_mac)
+
+// macOS: End?
+MACRO(mc_end_qmark_mac,       &kp LG(RIGHT) &mc_qmark)
+// tap: ?  | hold: End? (mac)
+TAPHOLD_TP(th_qmark_mac,      &mc_qmark, &mc_end_qmark_mac)
+
+// macOS: End /
+MACRO(mc_end_fslh_mac,        &kp LG(RIGHT) &kp SPACE &mc_fslh)
+// tap: /  | hold: End / (mac)
+TAPHOLD_TP(th_fslh_mac,       &mc_fslh, &mc_end_fslh_mac)
+
+// macOS: End =
+MACRO(mc_end_equal_mac,       &kp LG(RIGHT) &kp SPACE &mc_equal)
+// tap: =  | hold: End = (mac)
+TAPHOLD_TP(th_equal_mac,      &mc_equal, &mc_end_equal_mac)

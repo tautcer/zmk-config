@@ -22,6 +22,7 @@
 #define NUM 6
 #define SYS 7
 #define MOUSE 8
+#define SHORTCUTS_MAC 9
 
 #define XXX &none
 #define ___ &trans

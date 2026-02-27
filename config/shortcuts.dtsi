@@ -12,7 +12,7 @@ MACRO(mc_paste,           &kp  LG(V))
 MACRO(mc_screen,          &kp  LG(LS(X)))
 MACRO(mc_prev_zone,       &kp  LC(LEFT))
 MACRO(mc_next_zone,       &kp  LC(RIGHT))
-MACRO(mc_move_to_screen,  &kp  LG(LA(LS(LEFT))))
+MACRO(mc_move_to_screen,  &kp  LC(LA(LG(LEFT))))
 
 MACRO(mc_next_tab,        &kp  LC(TAB))
 MACRO(mc_prev_tab,        &kp  LC(LS(TAB)))

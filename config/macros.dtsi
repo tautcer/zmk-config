@@ -61,6 +61,23 @@ ZMK_MACRO(mc_otask,
     bindings = <&kp MINUS &kp SPACE &kp LBKT &kp SPACE &kp RBKT &kp SPACE>;
 )
 
+// Tap 	Long press
+// _ < > / \ # 	Double, e.g __
+// " ' = ` 0 . 	Triple, e.g """
+// | & = 	Double with spaces, e.g  || 
+// ! 	 !=  (with spaces)
+// ? 	{:?}
+// # 	{:#?}
+// % 	%{}
+// ( [ { 	Close and move cursor between
+
+// _ 
+MACRO(mc_und,                 &kp UNDER &kp SPACE)
+// End_ 
+MACRO(mc_end_und,             &kp END &mc_und)
+// tap: _  | hold: End_ 
+TAPHOLD_TP(th_und,            &mc_und, &mc_end_und)
+
 // ' 
 MACRO(mc_sqo,                 &kp SQT &kp SPACE)
 // End' 

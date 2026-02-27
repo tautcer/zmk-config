@@ -61,35 +61,25 @@ ZMK_MACRO(mc_otask,
     bindings = <&kp MINUS &kp SPACE &kp LBKT &kp SPACE &kp RBKT &kp SPACE>;
 )
 
-// Tap 	Long press
-// _ < > / \ # 	Double, e.g __
-// " ' = ` 0 . 	Triple, e.g """
-// | & = 	Double with spaces, e.g  || 
-// ! 	 !=  (with spaces)
-// ? 	{:?}
-// # 	{:#?}
-// % 	%{}
-// ( [ { 	Close and move cursor between
-
 // _ 
 MACRO(mc_und,                 &kp UNDER &kp SPACE)
-// End_ 
-MACRO(mc_end_und,             &kp END &mc_und)
-// tap: _  | hold: End_ 
+// __
+MACRO(mc_end_und,             &kp UNDER &kp UNDER)
+// tap: _  | hold: __
 TAPHOLD_TP(th_und,            &mc_und, &mc_end_und)
 
 // ' 
 MACRO(mc_sqo,                 &kp SQT &kp SPACE)
-// End' 
-MACRO(mc_end_sqo,             &kp END &mc_sqo)
-// tap: '  | hold: End' 
+// '''
+MACRO(mc_end_sqo,             &kp SQT &kp SQT &kp SQT)
+// tap: '  | hold: '''
 TAPHOLD_TP(th_sqo,            &mc_sqo, &mc_end_sqo)
 
 // " 
 MACRO(mc_dqo,                 &kp DQT &kp SPACE)
-// End" 
-MACRO(mc_end_dqo,             &kp END &mc_dqo)
-// tap: "  | hold: End" 
+// """
+MACRO(mc_end_dqo,             &kp DQT &kp DQT &kp DQT)
+// tap: "  | hold: """
 TAPHOLD_TP(th_dqo,            &mc_dqo, &mc_end_dqo)
 
 // ` 
@@ -115,9 +105,9 @@ TAPHOLD_TP(th_or,             &mc_or, &mc_right_or)
 
 // {
 MACRO(mc_lbrc,                &kp LBRC)
-// End {
-MACRO(mc_end_lbrc,            &kp END &kp SPACE &kp LBRC)
-// tap: { | hold: End {
+// {}←
+MACRO(mc_end_lbrc,            &kp LBRC &kp RBRC &kp LEFT)
+// tap: { | hold: {}←
 TAPHOLD_TP(th_lbrc,           &mc_lbrc, &mc_end_lbrc)
 
 // }
@@ -129,9 +119,9 @@ TAPHOLD_TP(th_rbrc,           &mc_rbrc, &mc_end_rbrc)
 
 // (
 MACRO(mc_lpar,                &kp LPAR)
-// End(
-MACRO(mc_end_lpar,            &kp END &kp LPAR)
-// tap: ( | hold: End(
+// ()←
+MACRO(mc_end_lpar,            &kp LPAR &kp RPAR &kp LEFT)
+// tap: ( | hold: ()←
 TAPHOLD_TP(th_lpar,           &mc_lpar, &mc_end_lpar)
 
 // )
@@ -150,9 +140,9 @@ TAPHOLD_TP(th_pars,           &mc_pars, &mc_end_pars)
 
 // [
 MACRO(mc_lbkt,                &kp LBKT)
-// →[
-MACRO(mc_end_lbkt,            &kp RIGHT &kp LBKT)
-// tap: [ | hold: →[
+// []←
+MACRO(mc_end_lbkt,            &kp LBKT &kp RBKT &kp LEFT)
+// tap: [ | hold: []←
 TAPHOLD_TP(th_lbkt,           &mc_lbkt, &mc_end_lbkt)
 
 // ]
@@ -212,16 +202,16 @@ TAPHOLD_TP(th_perc,           &mc_perc, &mc_end_perc)
 
 // <
 MACRO(mc_lt,                  &kp LT)
-// → <
-MACRO(mc_end_lt,              &kp RIGHT &kp SPACE &mc_lt )
-// tap: < | hold: → <
+// <<
+MACRO(mc_end_lt,              &kp LT &kp LT)
+// tap: < | hold: <<
 TAPHOLD_TP(th_lt,             &mc_lt, &mc_end_lt)
 
 // >
 MACRO(mc_gt,                  &kp GT)
-// → >
-MACRO(mc_end_gt,              &kp RIGHT &kp SPACE &mc_gt )
-// tap: > | hold: → >
+// >>
+MACRO(mc_end_gt,              &kp GT &kp GT)
+// tap: > | hold: >>
 TAPHOLD_TP(th_gt,             &mc_gt, &mc_end_gt)
 
 // +
@@ -254,23 +244,23 @@ TAPHOLD_TP(th_qmark,          &mc_qmark, &mc_end_qmark)
 
 // !
 MACRO(mc_excl,               &kp EXCL)
-// End!
-MACRO(mc_end_excl,           &kp END &mc_excl)
-// tap: ! | hold: End!
+//  != 
+MACRO(mc_end_excl,           &kp SPACE &kp EXCL &kp EQUAL &kp SPACE)
+// tap: ! | hold:  != 
 TAPHOLD_TP(th_excl,          &mc_excl, &mc_end_excl)
 
 // `
 MACRO(mc_grave,               &kp GRAVE)
-// End`
-MACRO(mc_end_grave,           &kp END &kp SPACE &mc_grave)
-// tap: ` | hold: End `
+// ```
+MACRO(mc_end_grave,           &kp GRAVE &kp GRAVE &kp GRAVE)
+// tap: ` | hold: ```
 TAPHOLD_TP(th_grave,          &mc_grave, &mc_end_grave)
 
 // |
 MACRO(mc_pipe,                &kp PIPE)
-// End |
-MACRO(mc_end_pipe,            &kp END &kp SPACE &mc_pipe)
-// tap: | | hold: End |
+//  || 
+MACRO(mc_end_pipe,            &kp SPACE &kp PIPE &kp PIPE &kp SPACE)
+// tap: | | hold:  || 
 TAPHOLD_TP(th_pipe,           &mc_pipe, &mc_end_pipe)
 
 // ^
@@ -289,16 +279,16 @@ TAPHOLD_TP(th_dllr,           &mc_dllr, &mc_end_dllr)
 
 // &
 MACRO(mc_amps,                &kp AMPS)
-// End &
-MACRO(mc_end_amps,            &kp END &kp SPACE &mc_amps)
-// tap: & | hold: End &
+//  && 
+MACRO(mc_end_amps,            &kp SPACE &kp AMPS &kp AMPS &kp SPACE)
+// tap: & | hold:  && 
 TAPHOLD_TP(th_amps,           &mc_amps, &mc_end_amps)
 
 // #
 MACRO(mc_hash,                &kp HASH)
-// End #
-MACRO(mc_end_hash,            &kp END &kp SPACE &mc_hash)
-// tap: # | hold: End #
+// ##
+MACRO(mc_end_hash,            &kp HASH &kp HASH)
+// tap: # | hold: ##
 TAPHOLD_TP(th_hash,           &mc_hash, &mc_end_hash)
 
 // ~
@@ -331,23 +321,23 @@ TAPHOLD_TP(th_comma,          &mc_comma, &mc_end_comma)
 
 // .
 MACRO(mc_dot,                 &kp DOT)
-// End .
-MACRO(mc_end_dot,             &kp END &kp SPACE &mc_dot)
-// tap: . | hold: End .
+// ...
+MACRO(mc_end_dot,             &kp DOT &kp DOT &kp DOT)
+// tap: . | hold: ...
 TAPHOLD_TP(th_dot,            &mc_dot, &mc_end_dot)
 
 // /
 MACRO(mc_fslh,                &kp FSLH)
-// End /
-MACRO(mc_end_fslh,            &kp END &kp SPACE &mc_fslh)
-// tap: / | hold: End /
+// //
+MACRO(mc_end_fslh,            &kp FSLH &kp FSLH)
+// tap: / | hold: //
 TAPHOLD_TP(th_fslh,           &mc_fslh, &mc_end_fslh)
 
 // =
 MACRO(mc_equal,               &kp EQUAL)
-// End =
-MACRO(mc_end_equal,           &kp END &kp SPACE &mc_equal)
-// tap: = | hold: End =
+// ===
+MACRO(mc_end_equal,           &kp EQUAL &kp EQUAL &kp EQUAL)
+// tap: = | hold: ===
 TAPHOLD_TP(th_equal,          &mc_equal, &mc_end_equal)
 
 // ;
@@ -358,16 +348,7 @@ MACRO(mc_end_semicolon,       &kp END &kp SPACE &mc_semicolon)
 TAPHOLD_TP(th_semicolon,      &mc_semicolon, &mc_end_semicolon)
 
 // === macOS variants (replace &kp END with &kp LG(RIGHT)) ===
-
-// macOS: End` 
-MACRO(mc_end_grave_mac,       &kp LG(RIGHT) &kp SPACE &mc_grave)
-// tap: `  | hold: End` (mac)
-TAPHOLD_TP(th_grave_mac,      &mc_grave, &mc_end_grave_mac)
-
-// macOS: End |
-MACRO(mc_end_pipe_mac,        &kp LG(RIGHT) &kp SPACE &mc_pipe)
-// tap: |  | hold: End | (mac)
-TAPHOLD_TP(th_pipe_mac,       &mc_pipe, &mc_end_pipe_mac)
+// Only needed for keys whose hold behavior still types to end-of-line.
 
 // macOS: End ^
 MACRO(mc_end_caret_mac,       &kp LG(RIGHT) &kp SPACE &mc_caret)
@@ -379,35 +360,10 @@ MACRO(mc_end_dllr_mac,        &kp LG(RIGHT) &kp SPACE &mc_dllr)
 // tap: $  | hold: End $ (mac)
 TAPHOLD_TP(th_dllr_mac,       &mc_dllr, &mc_end_dllr_mac)
 
-// macOS: End {
-MACRO(mc_end_lbrc_mac,        &kp LG(RIGHT) &kp SPACE &kp LBRC)
-// tap: {  | hold: End { (mac)
-TAPHOLD_TP(th_lbrc_mac,       &mc_lbrc, &mc_end_lbrc_mac)
-
 // macOS: End }
 MACRO(mc_end_rbrc_mac,        &kp LG(RIGHT) &kp SPACE &kp RBRC)
 // tap: }  | hold: End } (mac)
 TAPHOLD_TP(th_rbrc_mac,       &mc_rbrc, &mc_end_rbrc_mac)
-
-// macOS: End!
-MACRO(mc_end_excl_mac,        &kp LG(RIGHT) &mc_excl)
-// tap: !  | hold: End! (mac)
-TAPHOLD_TP(th_excl_mac,       &mc_excl, &mc_end_excl_mac)
-
-// macOS: End &
-MACRO(mc_end_amps_mac,        &kp LG(RIGHT) &kp SPACE &mc_amps)
-// tap: &  | hold: End & (mac)
-TAPHOLD_TP(th_amps_mac,       &mc_amps, &mc_end_amps_mac)
-
-// macOS: End #
-MACRO(mc_end_hash_mac,        &kp LG(RIGHT) &kp SPACE &mc_hash)
-// tap: #  | hold: End # (mac)
-TAPHOLD_TP(th_hash_mac,       &mc_hash, &mc_end_hash_mac)
-
-// macOS: End(
-MACRO(mc_end_lpar_mac,        &kp LG(RIGHT) &kp LPAR)
-// tap: (  | hold: End( (mac)
-TAPHOLD_TP(th_lpar_mac,       &mc_lpar, &mc_end_lpar_mac)
 
 // macOS: End)
 MACRO(mc_end_rpar_mac,        &kp LG(RIGHT) &kp RPAR)
@@ -418,11 +374,6 @@ TAPHOLD_TP(th_rpar_mac,       &mc_rpar, &mc_end_rpar_mac)
 MACRO(mc_end_semicolon_mac,   &kp LG(RIGHT) &kp SPACE &mc_semicolon)
 // tap: ;  | hold: End ; (mac)
 TAPHOLD_TP(th_semicolon_mac,  &mc_semicolon, &mc_end_semicolon_mac)
-
-// macOS: End"
-MACRO(mc_end_dqo_mac,         &kp LG(RIGHT) &mc_dqo)
-// tap: "  | hold: End" (mac)
-TAPHOLD_TP(th_dqo_mac,        &mc_dqo, &mc_end_dqo_mac)
 
 // macOS: End ~
 MACRO(mc_end_tilde_mac,       &kp LG(RIGHT) &kp SPACE &mc_tilde)
@@ -449,22 +400,7 @@ MACRO(mc_end_comma_mac,       &kp LG(RIGHT) &kp SPACE &mc_comma)
 // tap: ,  | hold: End , (mac)
 TAPHOLD_TP(th_comma_mac,      &mc_comma, &mc_end_comma_mac)
 
-// macOS: End .
-MACRO(mc_end_dot_mac,         &kp LG(RIGHT) &kp SPACE &mc_dot)
-// tap: .  | hold: End . (mac)
-TAPHOLD_TP(th_dot_mac,        &mc_dot, &mc_end_dot_mac)
-
 // macOS: End?
 MACRO(mc_end_qmark_mac,       &kp LG(RIGHT) &mc_qmark)
 // tap: ?  | hold: End? (mac)
 TAPHOLD_TP(th_qmark_mac,      &mc_qmark, &mc_end_qmark_mac)
-
-// macOS: End /
-MACRO(mc_end_fslh_mac,        &kp LG(RIGHT) &kp SPACE &mc_fslh)
-// tap: /  | hold: End / (mac)
-TAPHOLD_TP(th_fslh_mac,       &mc_fslh, &mc_end_fslh_mac)
-
-// macOS: End =
-MACRO(mc_end_equal_mac,       &kp LG(RIGHT) &kp SPACE &mc_equal)
-// tap: =  | hold: End = (mac)
-TAPHOLD_TP(th_equal_mac,      &mc_equal, &mc_end_equal_mac)
